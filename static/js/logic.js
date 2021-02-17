@@ -13,7 +13,22 @@ function init(){
         
         catsVSdogsPlot(cats_array, dogs_array, all_data);
     
-        ////              Model Accuracy Plots                     \\\\
+        // ////              Model Accuracy Plots                     \\\\
+        // cats = data.filter(x => x.class_item === "Cat")
+        // // console.log(cats);
+        // cat_accuracy =  cats.map(x => x.cat).filter(x => x > 0);
+        // // console.log(cat_accuracy);
+        // // console.log(`this is mean cat accuracy: ${mean(cat_accuracy)}`)
+
+        // dogs = data.filter(x => x.class_item === "Dog")
+        // // console.log(dogs)
+        // dog_accuracy =  dogs.map(x => x.dog).filter(x => x > 0);
+        // // console.log(dog_accuracy);
+        // // console.log(`this is mean dog accuracy: ${mean(dog_accuracy)}`)
+
+        // buildGauge(mean(cat_accuracy), "cat_avg_accuracy");
+        // buildGauge(mean(dog_accuracy), "dog_avg_accuracy");
+
         cats = data.filter(x => x.class_item === "Cat")
         // console.log(cats);
         cat_accuracy =  cats.map(x => x.cat).filter(x => x > 0);
@@ -28,7 +43,6 @@ function init(){
 
         buildGauge(mean(cat_accuracy), "cat_avg_accuracy");
         buildGauge(mean(dog_accuracy), "dog_avg_accuracy");
-
     })  
 }
 
