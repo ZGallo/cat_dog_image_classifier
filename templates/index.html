@@ -47,9 +47,9 @@
         <h3>Upload an image of your lost cat or dog</h3>
       </div> 
       <div class="row"> 
-        <form action="" method=post enctype=multipart/form-data>
-          <input style ="color:#2C7AAF; border: 2px solid white; border-radius: 2px; margin: 5px;" type=file name=file>
-          <input style ="background-color:#2C7AAF; color: white; border: 2px solid white; border-radius: 2px; margin: 5px;" type=submit value=Upload>
+        <form action="" method=post enctype=multipart/form-data id="form">
+          <input id="choose" style ="color:#2C7AAF; border: 2px solid white; border-radius: 2px; margin: 5px;" type=file name=file>
+          <input id="upload" style ="background-color:#2C7AAF; color: white; border: 2px solid white; border-radius: 2px; margin: 5px;" type=submit value=Upload>
         </form>
       </div> 
     </div>  
@@ -61,14 +61,30 @@
           <div class="page-header">
             <h3>Output</h3>
           </div>
-            <table class="table table-hover">
+            <!-- <table class="table table-hover">
               <tr class="table-active">
                 <th scope="col">Image</th>
                 <th scope="col">Classification</th>
               </tr>
               <tr>
                 <th scope="row"> <img width="224" height="224" src="{{imagesource}}" /> </th>
-                  <td> {{label}} </td>
+                  <td id="output"> {{label}} </td>
+              </tr>
+            </table> -->
+            <table class="table table-hover">
+              <tr class="table-active">
+                <th scope="col">Image</th>
+                <th scope="col">Classification</th>
+              </tr>
+              <tr>
+                <th scope="col"> <img width="224" height="224" src="{{imagesource}}" /> </th>
+                <td id="output">
+                  <table id="table-log" class="table table-striped">
+                    <thead >
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </td>
               </tr>
             </table> 
   
@@ -84,7 +100,22 @@
       </div>   
     </div>
     <hr>
-    <!-- Gauge section -->
+    <!-- Gauge Model Accuracy -->
+    <!-- <div class="row">
+      <div class="col-md-6">
+        <div class="card w-100">
+          <h3 class="card-text" style = "text-align: center">Cat Classification Model Accuracy</h3>  
+          <div class="card-img-bottom" id="cat_model_accuracy" width="300" height="300"> </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card w-100">
+          <h3 class="card-text" >Dog Classification Model Accuracy</h3>  
+          <div class="card-img-bottom" id="dog_model_accuracy" width="300" height="300"> </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- Gauge Mean Accuracy -->
     <div class="row">
       <div class="col-md-6">
         <div class="card w-100">
