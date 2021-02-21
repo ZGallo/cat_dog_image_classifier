@@ -1,69 +1,71 @@
 var predictions_log = "/predictions";
 
 function init(){
-    d3.json(predictions_log).then(data => {
-      console.log(data);
+  d3.json(predictions_log).then(data => {
+    console.log(data);
         
-      // var output = data[Object.keys(data)[Object.keys(data).length-1]];
-      // console.log(output);
-      // var class_item = output.class_item;
-      // console.log(class_item);
-      // var cat_output_accuracy = output.cat;
-      // var dog_output_accuracy = output.dog;
-      
-      // var tbody = d3.selectAll("#table-log").select("tbody");
+    // var output = data[Object.keys(data)[Object.keys(data).length-1]];
+    // console.log(output);
+    // var class_item = output.class_item;
+    // console.log(class_item);
+    // var cat_output_accuracy = output.cat;
+    // var dog_output_accuracy = output.dog;
+
+    // var tbody = d3.selectAll("#table-log").select("tbody");
+  
+    // var row1 = tbody.append("tr");
+    // row1.append("td").text("Class:");
+    // var row2 = tbody.append("tr");
+    // row2.append("td").text("Cat Probability:");
+    // var row3 = tbody.append("tr");
+    // row3.append("td").text("Dog Probability:");   
+        
+    runEnter();
+
+    // var upload = d3.select("form").select("#upload");
+    upload = d3.select("form").select("#upload");   
+    // console.log(upload);
+    // upload.on("change", runEnter);
+    // upload.on("submit",runEnter);
     
-      // var row1 = tbody.append("tr");
-      // row1.append("td").text("Class:");
-      // var row2 = tbody.append("tr");
-      // row2.append("td").text("Cat Probability:");
-      // var row3 = tbody.append("tr");
-      // row3.append("td").text("Dog Probability:");   
+    upload.on("click",runEnter);
+    
+    
+    // ///////     Cats & Dog Stats    \\\\\\\\\\\\\\\\\\
+    cats_array =  data.map(x => x.class_item).filter(x => x === 'Cat');
+    dogs_array =  data.map(x => x.class_item).filter(x => x === 'Dog');
+    all_data = data.length;
+    // console.log(all_data); 
+    
+    catsVSdogsPlot(cats_array, dogs_array, all_data);
 
-      runEnter();
+    // ////              Model Accuracy Output Plots                     \\\\
+    // console.log(output.cat);
 
-      var upload = d3.select("form").select("#upload");
-      // var upload = d3.select("form").select("#upload").node().value;
-      console.log(upload);
-      // upload.on("change", runEnter);
-      // upload.on("submit",runEnter);
-      upload.on("click",runEnter);
-      
-      
-      // ///////     Cats & Dog Stats    \\\\\\\\\\\\\\\\\\
-      cats_array =  data.map(x => x.class_item).filter(x => x === 'Cat');
-      dogs_array =  data.map(x => x.class_item).filter(x => x === 'Dog');
-      all_data = data.length;
-      // console.log(all_data); 
-      
-      catsVSdogsPlot(cats_array, dogs_array, all_data);
-
-      // ////              Model Accuracy Output Plots                     \\\\
-      // console.log(output.cat);
-
-      // buildGauge(output.cat, "cat_model_accuracy");
-      // buildGauge(output.dog, "dog_model_accuracy");
+    // buildGauge(output.cat, "cat_model_accuracy");
+    // buildGauge(output.dog, "dog_model_accuracy");
 
 
-      // ////              Mean Model Accuracy Plots                     \\\\
-      cats = data.filter(x => x.class_item === "Cat")
-      // console.log(cats);
-      cat_accuracy =  cats.map(x => x.cat).filter(x => x > 0);
-      // console.log(cat_accuracy);
-      // console.log(`this is mean cat accuracy: ${mean(cat_accuracy)}`)
+    // ////              Mean Model Accuracy Plots                     \\\\
+    cats = data.filter(x => x.class_item === "Cat")
+    // console.log(cats);
+    cat_accuracy =  cats.map(x => x.cat).filter(x => x > 0);
+    // console.log(cat_accuracy);
+    // console.log(`this is mean cat accuracy: ${mean(cat_accuracy)}`)
 
-      dogs = data.filter(x => x.class_item === "Dog")
-      // console.log(dogs)
-      dog_accuracy =  dogs.map(x => x.dog).filter(x => x > 0);
-      // console.log(dog_accuracy);
-      // console.log(`this is mean dog accuracy: ${mean(dog_accuracy)}`)
+    dogs = data.filter(x => x.class_item === "Dog")
+    // console.log(dogs)
+    dog_accuracy =  dogs.map(x => x.dog).filter(x => x > 0);
+    // console.log(dog_accuracy);
+    // console.log(`this is mean dog accuracy: ${mean(dog_accuracy)}`)
 
-      buildGauge(mean(cat_accuracy), "cat_avg_accuracy");
-      buildGauge(mean(dog_accuracy), "dog_avg_accuracy");
+    buildGauge(mean(cat_accuracy), "cat_avg_accuracy");
+    buildGauge(mean(dog_accuracy), "dog_avg_accuracy");
   })  
 }
 
 init();
+
 
 function runEnter() {
   d3.json(predictions_log).then(data => {

@@ -26,9 +26,8 @@ dbname = 'Final_project'
 # prediction_collection = lucy_db.predictions.find({},{'_id': False})
 # prediction_collection = mongo.db.mars_collection.find_one()
 
-mongo = PyMongo(app, uri=f"mongodb+srv://TanZee:MonashBootcamp@cluster0.at4ok.mongodb.net/{dbname}?retryWrites=true&w=majority")
+mongo = PyMongo(app, uri=f"mongodb+srv://TanZee:MonashBootcamp@cluster0.tzo2e.mongodb.net/{dbname}?retryWrites=true&w=majority")
 prediction_collection = mongo.db.predictions
-
 
 ############################################33
 
